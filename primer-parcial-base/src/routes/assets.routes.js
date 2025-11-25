@@ -16,7 +16,7 @@ export const assetRoutes = Router();
 // TODO: proteger las rutas con middlewares de autenticación y autorización faltantes
 
 // * crear un recurso (usuario autenticado)
-assetRoutes.post("/assets", authMiddleware, createAssetValidation, validator, createAsset);
+assetRoutes.post("/assets", authMiddleware, validator, createAsset);
 
 // * traer todos los recursos (usuario autenticado que sea admin)
 assetRoutes.get("/assets", authMiddleware, adminMiddleware, getAllAssets);

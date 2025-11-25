@@ -6,3 +6,5 @@ export const signToken = (payload) =>
 
 // * funcion para verificar que un token este con la misma firma secreta
 export const verifyToken = (token) => jwt.verify(token, process.env.JWT_SECRET);
+
+export default { signToken, verifyToken };
