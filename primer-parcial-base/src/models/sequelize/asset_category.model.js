@@ -17,6 +17,7 @@ AssetModel.belongsToMany(CategoryModel, {
 
 // * 'categories' (Asset) y 'assets' (Category)
 
+
 CategoryModel.belongsToMany(AssetModel, {
   through: AssetCategoryModel,
   as: "assets",
