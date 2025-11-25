@@ -1,6 +1,34 @@
 import { model, Schema } from "mongoose";
 
 // TODO: completar relacion embebida y configurar el virtuals para el populate inverso con assets
+const profileSchema = new Schema({
+
+   employee_number:{
+      type: String, 
+      required: true, 
+      unique: true 
+
+    },
+
+    first_name: {
+      type: String, 
+      required: true, 
+      minlength: 2, 
+      maxlength: 50
+    },
+    
+    last_name:{
+      type: String, 
+      required: true, 
+      minlength: 2, 
+      maxlength: 50
+    },
+
+    phone:{
+      type: String
+    }
+});
+
 
 const UserSchema = new Schema(
   {
@@ -20,10 +48,18 @@ const UserSchema = new Schema(
     },
     deletedAt: { type: Date, default: null },
     // ! FALTA COMPLETAR ACA
+    profile: profileSchema,
+    
   },
-  { timestamps: true }
+  { timestamps: true, toJSON:{ virtuals: true }, toObject: { virtuals: true } }
 );
 
 // ! FALTA COMPLETAR ACA
+
+UserSchema.virtual("asset",{
+  ref: "Asset",
+  localField: "_id",
+  foreignField: "responsible",
+});
 
 export const UserModel = model("User", UserSchema);
